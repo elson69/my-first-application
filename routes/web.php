@@ -1,15 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Job; 
 Route::get('/', function () {
-    return view('home');   // load home.blade.php
+    return view('contact');
 });
 
-Route::get('/about', function () {
-    return view('about');  // load about.blade.php
+Route::get('/jobs', function () {
+    return view('jobs', [
+        'jobs' => Job::all()
+    ]);
 });
 
-Route::get('/contact', function () {
-    return view('contact'); // load contact.blade.php
+Route::get('/jobs/{id}', function ($id) {
+    return view('job', [
+        'job' => Job::find($id)
+    ]);
 });
