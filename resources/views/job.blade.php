@@ -8,6 +8,10 @@
             <h2 class="text-2xl font-bold mb-4 text-gray-800">
                 {{ $job['title'] }}
             </h2>
+            <p class="text-sm text-gray-500">{{ $job->employer->name }}</p>
+            <h2 class="font-bold text-lg">{{ $job->title }}</h2>
+            <p>This job pays {{ $job->salary }} per year.</p>
+
             <p class="text-gray-600 mb-6">
                 This job pays 
                 <span class="font-semibold text-green-600">{{ $job['salary'] }}</span> 

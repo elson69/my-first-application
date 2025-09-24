@@ -15,6 +15,6 @@ class Employer extends Model
     // Define relationship: an employer has many jobs
     public function jobs()
     {
-        return $this->hasMany(Job::class);
+        return $this->hasMany(\App\Models\Job::class);
     }
 }
