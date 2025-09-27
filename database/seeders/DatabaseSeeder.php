@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Employer;
+use App\Models\Tag;
+use App\Models\Job;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,12 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create a test user
+        \App\Models\User::factory()->create([
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'email' => 'test@example.com',
+    ]);
 
-       $tags = \App\Models\Tag::factory(10)->create();
+    $tags = \App\Models\Tag::factory(10)->create();
 
-    \App\Models\Job::factory(20)->create()->each(function($job) use ($tags) {
+    \App\Models\Job::factory(20)->create()->each(function ($job) use ($tags) {
         $job->tags()->attach($tags->random(2));
     });
-    }
+}
 }

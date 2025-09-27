@@ -6,7 +6,6 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($jobs as $job)
             <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition">
-                
                 <!-- Job Title -->
                 <h2 class="text-xl font-semibold mb-2 text-gray-800">
                     {{ $job->title }}
@@ -14,7 +13,7 @@
 
                 <!-- Employer Name and Job Info -->
                 <p class="text-blue-500 mb-2">
-                    <strong class="text-laracasts">{{ $job->employer->name }}:</strong>
+                    <strong class="text-laracasts">{{ $job->employer->name ?? 'No Employer' }}:</strong>
                     {{ $job->title }} pays {{ $job->salary }} per year.
                 </p>
 
@@ -38,5 +37,10 @@
                 </a>
             </div>
         @endforeach
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-6">
+        {{ $jobs->links() }}
     </div>
 </x-layout>
