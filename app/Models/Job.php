@@ -9,26 +9,24 @@ class Job extends Model
 {
     use HasFactory;
 
-    // Specify the table name if it's not the default 'jobs'
-    protected $table = 'job_listings';
+    // Laravel will automatically use the "jobs" table (no need to override)
+    protected $guarded = [];
 
-    // Mass assignable fields
-    protected $fillable = ['title', 'salary', 'employer_id'];
+    protected $table = "job_listings";
 
-    // One-to-many relationship: a Job belongs to an Employer
+    /**
+     * A job belongs to an employer.
+     */
     public function employer()
     {
-        return $this->belongsTo(\App\Models\Employer::class);
+        return $this->belongsTo(Employer::class);
     }
 
-    // Many-to-many relationship: a Job has many Tags
+    /**
+     * A job may have many tags.
+     */
     public function tags()
     {
-        return $this->belongsToMany(
-            \App\Models\Tag::class,       // Related model
-            'job_listing_tag',             // Pivot table
-            'job_listing_id',              // Foreign key for this model in pivot
-            'tag_id'                       // Foreign key for related model in pivot
-        );
+        return $this->belongsToMany(Tag::class, foreignPivotKey: 'job_listings_id');
     }
 }

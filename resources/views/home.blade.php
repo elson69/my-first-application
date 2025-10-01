@@ -3,5 +3,5 @@
         Home Page
     </x-slot:heading>
 
-    <p>Welcome to the Job Board! Use the navigation above to browse job listings.</p>
+    <p>Welcome to the Job Board! Please Click the Jobs.</p>
 </x-layout>

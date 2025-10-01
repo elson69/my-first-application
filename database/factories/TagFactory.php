@@ -16,8 +16,9 @@ class TagFactory extends Factory
      */
     public function definition(): array
     {
-         return [
-        'name' => fake()->word(),
-    ];
+        return [
+            // Generates unique 2-word tag names, e.g. "blue sky", "fast car"
+            'name' => $this->faker->unique()->words(2, true),
+        ];
     }
 }
