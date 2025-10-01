@@ -16,26 +16,21 @@
 
     <!-- Jobs List -->
     <div class="space-y-4">
-        @forelse ($jobs as $job)
+   
             <div class="rounded-lg border border-gray-200 p-4 shadow-sm hover:shadow-md transition">
                 <h2 class="text-xl font-semibold text-gray-900">
-                    <a href="/jobs/{{ $job->id }}" class="hover:underline">
+                    <a href="/jobs/{{ $job->id }}/edit" class="hover:underline">
                         {{ $job->title }}
                     </a>
                 </h2>
                 <p class="text-sm text-gray-600">Salary: {{ $job->salary }}</p>
 
-                @if ($job->employer)
                     <p class="text-sm text-gray-500">Employer: {{ $job->employer->name }}</p>
-                @endif
             </div>
-        @empty
+        
             <p class="text-gray-600">No jobs found.</p>
-        @endforelse
+        
     </div>
 
-    <!-- Pagination -->
-    <div class="mt-6">
-        {{ $jobs->links() }}
-    </div>
+
 </x-layout>

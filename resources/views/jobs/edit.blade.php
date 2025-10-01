@@ -12,9 +12,9 @@
             <div>
                 <label for="title" class="block text-sm font-medium text-gray-900">Title</label>
                 <input type="text" name="title" id="title"
-                       value="{{ old('title') }}"
+                       value="{{ old('title', $job->title) }}"
                        class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                       required>
+                       >
                 @error('title')
                     <p class="text-xs text-red-500 font-semibold mt-1">{{ $message }}</p>
                 @enderror
@@ -24,9 +24,9 @@
             <div>
                 <label for="salary" class="block text-sm font-medium text-gray-900">Salary</label>
                 <input type="text" name="salary" id="salary"
-                       value="{{ old('salary') }}"
+                       value="{{ old('salary', $job->salary) }}"
                        class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                       required>
+                       >
                 @error('salary')
                     <p class="text-xs text-red-500 font-semibold mt-1">{{ $message }}</p>
                 @enderror
@@ -35,15 +35,7 @@
             <!-- Actions -->
             <div class="flex items-center justify-between">
                 <!-- Left: Delete -->
-                <form method="POST" action="/jobs/{{ $job->id }}"
-                      onsubmit="return confirm('Are you sure you want to delete this job?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"
-                            class="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
-                        🗑 Delete
-                    </button>
-                </form>
+
 
                 <!-- Right: Cancel + Save -->
                 <div class="flex gap-3">
@@ -58,5 +50,15 @@
                 </div>
             </div>
         </form>
+
+                        <form method="POST" action="/jobs/{{ $job->id }}" class="mt-4"
+                      onsubmit="return confirm('Are you sure you want to delete this job?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                            class="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+                        🗑 Delete
+                    </button>
+                </form>
     </div>
 </x-layout>
